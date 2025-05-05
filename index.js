@@ -3,8 +3,11 @@ const app = express();
 const path = require('path');
 
 // app.get('/',(req,res) => {
-//     res.send("<h1>Hello Wrold!</h1>") 
-// })
+    //     res.send("<h1>Hello Wrold!</h1>") 
+    // })
+
+app.use(express.static('example'))  //This will show as home page by default
+
 app.get('/about',(req,res) => {
     res.send("<h1>About Page</h1>") 
 })
@@ -22,7 +25,6 @@ app.get('/jsonres',(req,res) => {
     }])
 })
 
-app.use(express.static('example'))
 
 app.all('*',(req,res) => {         //app.all used for all urls that are not made by us
     res.send("Page Not Found")
