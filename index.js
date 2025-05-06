@@ -1,36 +1,22 @@
 const express = require('express');
 const app = express();
-const path = require('path');
+const phone = require('./data.js')
 
-// app.get('/',(req,res) => {
-    //     res.send("<h1>Hello Wrold!</h1>") 
-    // })
-
-app.use(express.static('example'))  //This will show as home page by default
-
-app.get('/about',(req,res) => {
-    res.send("<h1>About Page</h1>") 
-})
-app.get('/files',(req,res) => {
-    res.sendFile(path.join(__dirname,'./index.html')) 
-})
-app.get('/jsonres',(req,res) => {
-    res.json([{
-        firstName: 'John',
-        lastName: 'Cena'
-    },
-    {
-        firstName: 'Cody',
-        lastName: 'Rhodes'
-    }])
+app.get('/',(req,res) => {
+    res.send("<h1>Home Page<h2> <a href='/api/phone'>Phone</a>")
 })
 
+app.get('/api/phone',(req,res) => {
+    const selectedItem = phone.map((items) => {
+        const {id,name} = items;
+        return {id,name};
+    })  //For each item, it pulls out just the id and name using what's called "destructuring"
 
-app.all('*',(req,res) => {         //app.all used for all urls that are not made by us
-    res.send("Page Not Found")
+    res.json(selectedItem)
 })
+
 
 
 app.listen(3000,() => {
-    console.log("Server is running")
+    console.log("Server Stared")
 })
