@@ -32,7 +32,7 @@ app.get('/api/phone/:phoneID',(req,res) => {    //sending data of ID requested i
 })
 
 
-app.get('/api/v1/query',(req,res) => {    //sending filter data according to serach,limit entered in url
+app.get('/api/v1/query',(req,res) => {    //sending filter data according to (serach,limit,fromEnd) entered in url
     console.log(req.query);
     let sortedPhone = [...phone];
     const {search,limit,fromEnd} = req.query;     //destructuring
